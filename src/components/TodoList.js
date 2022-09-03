@@ -1,9 +1,14 @@
 import React from 'react'
+import TodoItem from './TodoItem';
 
-function TodoList() {
+function TodoList({todos}) {
   return (
     <div>
-        TodoList
+        {
+            todos.map((todo, index)=>(
+              <TodoItem key = {`todo-${index}`}todo = {todo}/>
+            ))
+        }
     </div>
   )
 }
