@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TodoItem({todo}) {
+function TodoItem({todo, onComplete}) {
 
     const getStyle = () =>{
         return {
@@ -13,9 +13,11 @@ function TodoItem({todo}) {
 
     return (
         <div style={getStyle()}>
-            {
-                todo.task
-            }
+                <input type='checkbox' checked = {todo.completed}
+                onChange={()=> onComplete(todo.id)}/>
+                {todo.task}
+                <button className='add-btn'>x</button>
+            
         </div>
     )
 }
