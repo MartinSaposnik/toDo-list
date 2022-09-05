@@ -6,17 +6,21 @@ import TodoList from './components/TodoList';
 function App() {
 
   const [todos, setTodos] = useState(data)
-  const onComplete = (id)=>{
-    console.log('task', id);
+  const onComplete = (id) => {
 
-    setTodos(todos.map((todo)=>{
-      return todo.id === Number(id) ? {...todo, completed: !todo.completed} : {...todo};
+    setTodos(todos.map((todo) => {
+      return todo.id === Number(id) ? { ...todo, completed: !todo.completed } : { ...todo };
     }))
   }
 
+  const onDeleteItem = (id) =>{
+    setTodos([...todos].filter(todo=>todo.id !== id))
+  }
+
+
   return (
     <div className="container">
-      <TodoList todos = {todos} onComplete = {onComplete}/>
+      <TodoList todos = {todos} onComplete = {onComplete} onDeleteItem = {onDeleteItem}/>
     </div>
   );
 }
