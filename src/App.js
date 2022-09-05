@@ -2,6 +2,7 @@ import './App.css';
 import data from './data.json'
 import { useState } from 'react';
 import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm';
 
 function App() {
 
@@ -17,9 +18,16 @@ function App() {
     setTodos([...todos].filter(todo=>todo.id !== id))
   }
 
+  const addTodo = (newTodo)=>{
+    let newItem = {id : +new Date(), task: newTodo, completed: false}; //normalmente esto se hace desde el servidor, pero para este ejemplo uso esta manera.
+
+    setTodos([...todos, newItem])
+  }
+
 
   return (
     <div className="container">
+      <TodoForm addTodo={addTodo}/>
       <TodoList todos = {todos} onComplete = {onComplete} onDeleteItem = {onDeleteItem}/>
     </div>
   );
